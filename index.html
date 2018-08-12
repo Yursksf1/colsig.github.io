@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Colombia</title>
+    <link rel="stylesheet" type="text/css" href="css/app.css">
+  </head>
+  <body>
+    <header>
+    </header>
+    <main>
+      <div id = "data">     
+        <div class = valor>
+          <p class = subtitulo-hora>Fecha</p>
+          <p id="fecha">Fecha.</p>
+        </div> 
+
+        <div class = valor>
+          <p class = subtitulo>Hora</p>
+          <p id="hora">Hora.</p>
+        </div> 
+
+          <div class = valor>
+            <p class = subtitulo>Lugar</p>
+            <p id="lugar">Lugar.</p>
+          </div> 
+
+          <div class = valor>
+            <p class = subtitulo>Magnitud</p>
+            <p id="magnitud">Magnitud.</p>
+          </div> 
+        </div>
+      </div> 
+    </main>
+    <footer>
+    </footer>
+    <script src="js/jquery-3.1.0.min.js"></script>
+      <script>
+
+        window.setInterval(function () {
+            var key = "a4ff09a0";
+            $.ajax({
+              url: 'https://my.api.mockaroo.com/colsig.json',
+              data: {
+                'key': key
+              },
+              dataType: 'json',
+              success: function (data) {
+                //alert(data['serial']);
+                console.log(data['lugar']);
+                //$("#fecha").text(data['serial_1']);
+                //$("#hora").text(data['serial_2']);
+                $("#lugar").text(data['lugar']);
+                $("#magnitud").text(data['magnitud']);
+                //$("#lugar").text(data['lon']);
+                //$("#lugar").text(data['lugar']);
+                var now = new Date();
+                var hora = now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds();
+                var fecha = now.getFullYear() + '/' + now.getMonth()+1 + '/' + now.getDate();
+
+
+                $("#hora").text(hora);
+                $("#fecha").text(fecha);
+                if (data['change']) {
+                  $("#hora").addClass("green");
+                }
+                else {
+                  $("#hora").addClass("red");
+                }
+              }
+            });
+          }, 1000);
+  </script>
+  </body>
+</html>
