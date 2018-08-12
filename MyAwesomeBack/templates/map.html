@@ -20,7 +20,7 @@
         function loadEpi()
         {
           $.ajax({
-            url: 'http://127.0.0.1:5000/api',
+            url: 'http://172.20.1.72:5000/api',
             dataType: 'json',
             success: function (data) {
               $("#epi_place").text(data['lugar']);
@@ -33,7 +33,7 @@
         {
           $.ajax({
               type: "POST",
-              url: 'http://127.0.0.1:5000/city',              
+              url: 'http://172.20.1.72:5000/city',              
               data: {
                 'city': name
               },

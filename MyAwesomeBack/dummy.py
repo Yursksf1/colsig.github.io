@@ -41,7 +41,8 @@ def api():
     #return http.Response(content, headers=headers)
     data = mydataDummy[random.randint(0,4)]
     return data
-    
+
+#@app.route('/map')
 def map():
     return app.render_template('map.html')
 
