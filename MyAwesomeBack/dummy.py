@@ -46,13 +46,12 @@ def map():
     return app.render_template('map.html')
 
 
-def city(name = 'medellin'):
-
-    data =     {
-        'city_place': name,
-        'city_magnitud': round(random.uniform(2,6), 2)
-    },
-    return data
+def city(city='medellin'):
+    data = {
+            'city_place': city,
+            'city_magnitud': round(random.uniform(2,6), 2)
+            },
+    return data[0]
 
     
 
