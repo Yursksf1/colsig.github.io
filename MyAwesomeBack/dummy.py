@@ -43,11 +43,16 @@ def api():
     return data
     
 def map():
-    return app.render_template('col_2.svg')
+    return app.render_template('map.html')
 
 
-def map():
-    return app.render_template('col_2.svg')
+def city(name = 'medellin'):
+
+    data =     {
+        'city_place': name,
+        'city_magnitud': round(random.uniform(2,6), 2)
+    },
+    return data
 
     
 
@@ -56,6 +61,7 @@ routes = [
     Route('/', method='GET', handler=welcome),
     Route('/api', method='GET', handler=api),
     Route('/map', method='GET', handler=map),
+    Route('/city', method='POST', handler=city),
 ]
 
 app = App(routes=routes, template_dir=TEMPLATE_DIR, static_dir=STATIC_DIR)

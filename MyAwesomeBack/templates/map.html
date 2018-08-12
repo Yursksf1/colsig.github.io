@@ -1,0 +1,50 @@
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Colombia</title>
+    <link href="{{ static_url('css/app.css') }}" rel="stylesheet">
+  </head>
+  <body>
+    <header>
+    </header>
+    <main>
+      {% include "col.svg" %}
+    </main>
+    <footer>
+    </footer>
+    <script src="{{ static_url('js/jquery-3.1.0.min.js') }}"></script>
+      <script>
+
+        window.setInterval(function () {
+            $.ajax({
+              url: 'http://127.0.0.1:5000/api',
+              dataType: 'json',
+              success: function (data) {
+                $("#lugar").text(data['lugar']);
+                $("#magnitud").text(data['magnitud']);
+              }
+            });
+          }, 10000);
+        
+        function sentCity(name)
+        {
+          $.ajax({
+              url: 'http://127.0.0.1:5000/city',              
+              data: {
+                'city': name
+              },
+              dataType: 'json',
+              success: function (data) {
+                $("#select_place").text(data['city_place']);
+                $("#select_magnitud").text(data['city_magnitud']);
+              }
+            });
+          console.log(name);
+
+        }
+
+  </script>
+  </body>
+</html>
